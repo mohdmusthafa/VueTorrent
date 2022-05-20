@@ -4,7 +4,7 @@ const iconVersion = 22
 
 const qBittorrentPort = process.env['QBITTORRENT_PORT'] ?? 8080
 const vueTorrentPort = process.env['VUETORRENT_PORT'] ?? 8000
-const proxyTarget = process.env['QBITTORRENT_TARGET'] ?? 'http://homeserver'
+const proxyTarget = process.env['QBITTORRENT_TARGET'] ?? 'http://localhost'
 
 module.exports = {
   pwa: {
