@@ -118,6 +118,14 @@
                 autocomplete="download-directory"
                 name="download-directory"
               />
+
+              <v-text-field
+                v-model="torrent_name"
+                :label="Name"
+                :prepend-icon="mdiFile"
+                placeholder="File Name"
+                name="torrent-name"
+              />
               <v-row no-gutters>
                 <v-flex xs12 sm6>
                   <v-checkbox
@@ -210,7 +218,7 @@
 import { mapGetters } from 'vuex'
 import Modal from '@/mixins/Modal'
 import qbit from '@/services/qbit'
-import { mdiCloudUpload, mdiFolder, mdiTag, mdiPaperclip, mdiLink, mdiClose } from '@mdi/js'
+import { mdiCloudUpload, mdiFolder, mdiTag, mdiPaperclip, mdiLink, mdiClose, mdiFile } from '@mdi/js'
 import { FullScreenModal } from '@/mixins'
 export default {
   name: 'AddModal',
@@ -224,6 +232,7 @@ export default {
       files: [],
       category: null,
       directory: '',
+      torrent_name: '',
       start: true,
       skip_checking: false,
       root_folder: true,
@@ -241,7 +250,7 @@ export default {
       loading: false,
       urls: null,
       valid: false,
-      mdiCloudUpload, mdiFolder, mdiTag, mdiPaperclip, mdiLink, mdiClose
+      mdiCloudUpload, mdiFolder, mdiTag, mdiPaperclip, mdiLink, mdiClose, mdiFile
     }
   },
   computed: {
@@ -314,6 +323,7 @@ export default {
         if (this.urls) params.urls = this.urls
         if (this.category) params.category = this.category.name
         if (!this.autoTMM) params.savepath = this.directory
+        if (this.torrent_name) params.rename = this.torrent_name
 
         qbit.addTorrents(params, torrents)
 
