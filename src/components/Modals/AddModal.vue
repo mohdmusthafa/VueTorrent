@@ -155,6 +155,20 @@
                     hide-details
                   />
                 </v-flex>
+                <v-flex xs12 sm6>
+                  <v-checkbox
+                    v-model="sequentialDownload"
+                    :label="$t('rightClick.advanced.sequentialDownload')"
+                    hide-details
+                  />
+                </v-flex>
+                <v-flex xs12 sm6>
+                  <v-checkbox
+                    v-model="firstLastPiecePrio"
+                    :label="$t('rightClick.advanced.firstLastPriority')"
+                    hide-details
+                  />
+                </v-flex>
               </v-row>
             </v-container>
           </v-form>
@@ -220,6 +234,7 @@ import Modal from '@/mixins/Modal'
 import qbit from '@/services/qbit'
 import { mdiCloudUpload, mdiFolder, mdiTag, mdiPaperclip, mdiLink, mdiClose, mdiFile } from '@mdi/js'
 import { FullScreenModal } from '@/mixins'
+
 export default {
   name: 'AddModal',
   mixins: [Modal, FullScreenModal],
@@ -237,6 +252,8 @@ export default {
       skip_checking: false,
       root_folder: true,
       autoTMM: true,
+      sequentialDownload: false,
+      firstLastPiecePrio: false,
       fileInputRules: [
         v => {
           const result = v.every(f => {
@@ -274,8 +291,6 @@ export default {
     }
   },
   created() {
-    this.$store.commit('FETCH_SETTINGS')
-    this.$store.commit('FETCH_CATEGORIES')
     this.urls = this.initialMagnet
     this.setSettings()
     if (this.openSuddenly == true) {
@@ -286,11 +301,14 @@ export default {
     this.dTransition = 'scale-transition'
   },
   methods: {
-    setSettings() {
+    async setSettings() {
+      await this.$store.dispatch('FETCH_SETTINGS')
+      await this.$store.commit('FETCH_CATEGORIES')
       const settings = this.getSettings()
       this.start = !settings.start_paused_enabled
       this.autoTMM = settings.auto_tmm_enabled
       this.root_folder = settings.create_subfolder_enabled
+      this.directory = this.savepath
     },
     addDropFile(e) {
       this.showWrapDrag = false
@@ -317,7 +335,9 @@ export default {
           paused: !this.start,
           skip_checking: this.skip_checking,
           root_folder: this.root_folder,
-          autoTMM: this.autoTMM
+          autoTMM: this.autoTMM,
+          sequentialDownload: this.sequentialDownload,
+          firstLastPiecePrio: this.firstLastPiecePrio
         }
         if (this.files.length) torrents.push(...this.files)
         if (this.urls) params.urls = this.urls
@@ -333,7 +353,7 @@ export default {
       }
     },
     categoryChanged() {
-      if (this.autoTMM) this.directory = this.savepath
+      this.directory = this.savepath
     },
     resetForm() {
       this.url = null
@@ -353,6 +373,7 @@ export default {
 .wrap-drag {
   pointer-events: none;
 }
+
 .wrap-drag .align {
   margin: -.5em 0 0;
   position: absolute;

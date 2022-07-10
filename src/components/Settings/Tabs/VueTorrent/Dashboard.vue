@@ -35,7 +35,7 @@
           </v-list>
         </v-row>
       </v-col>
-      
+
       <v-col cols="12" md="6">
         <v-subheader>
           {{ $t('modals.settings.pageVueTorrent.pageDashboard.completedTorrentTip') }}

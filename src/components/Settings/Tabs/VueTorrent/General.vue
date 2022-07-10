@@ -194,7 +194,6 @@
 import { mapState, mapGetters } from 'vuex'
 import qbit from '@/services/qbit'
 import { availableLanguages } from '@/lang'
-
 export default {
   name: 'General',
   data() {
@@ -305,12 +304,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-::v-deep .v-select .v-select__selection {
+:deep(.v-select .v-select__selection) {
   padding-top: 10px !important;
   padding-bottom: 10px !important;
 }
 // Reversed input variant
-::v-deep .v-input--reverse .v-input__slot {
+:deep(.v-input--reverse .v-input__slot) {
   @import "src/styles/styles.scss";
   @include reverse-switch;
 }

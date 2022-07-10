@@ -1,6 +1,6 @@
 const locale = {
   /** General */
-  category: 'category',
+  category: 'Category',
   settings: 'settings',
   pause: 'pause',
   delete: 'delete',
@@ -16,7 +16,7 @@ const locale = {
   unknown: 'unknown',
   status: 'Status',
   all: 'All',
-  downloading: 'downloading',
+  downloading: 'Downloading',
   seeding: 'Seeding',
   completed: 'Completed',
   resumed: 'Resumed',
@@ -27,9 +27,9 @@ const locale = {
   errored: 'Errored',
   login: 'Login in',
   logout: 'Log out',
-  downloaded: 'downloaded',
-  uploaded: 'uploaded',
-  upload: 'upload',
+  downloaded: 'Downloaded',
+  uploaded: 'Uploaded',
+  upload: 'Upload',
   download: 'Download',
   ETA: 'ETA',
   peers: 'Peers',
@@ -38,8 +38,10 @@ const locale = {
   tags: 'Tags',
   share: 'Share',
   name: 'Name',
-  hash: 'Hase',
+  hash: 'Hash',
   magnet: 'Magnet',
+  feed: 'feed',
+  rule: 'rule',
 
   /** Torrent */
   torrent: {
@@ -84,6 +86,17 @@ const locale = {
 
   /** Modals */
   modals: {
+    newFeed: {
+      feedName: 'Name',
+      url: 'URL'
+    },
+    newRule: {
+      name: 'Name',
+      def: {
+        mustContain: 'Must Contain',
+        affectedFeeds: 'Apply Rule to Feeds'
+      }
+    },
     pluginManager: {
       title: 'Plugin manager'
     },
@@ -106,6 +119,7 @@ const locale = {
         downloads: 'downloads',
         connection: 'connection',
         bittorrent: 'bittorrent',
+        rss: 'Rss',
         webUI: 'WEB UI',
         tagsAndCategories: 'tags & categories'
       },
@@ -171,7 +185,11 @@ const locale = {
         globalMaxConnection: 'Global maximum number of connections',
         perTorrentMaxConnection: 'Maximum number of connections per torrent',
         globalMaxUploadSlots: 'Global maximum number of upload slots',
-        perTorrentMaxUploadSlots: 'Maximum number of upload slots per torrent'
+        perTorrentMaxUploadSlots: 'Maximum number of upload slots per torrent',
+        proxySubHeader: 'Proxy Server',
+        proxyPeerConnections: 'Use proxy for peer connections',
+        proxyTorrentOnly: 'Use proxy only for torrents',
+        proxyAuth: 'Authentication'
       },
       pageBittorrent: {
         subHeaderPrivacy: 'Privacy',
@@ -191,6 +209,31 @@ const locale = {
         whenRatioReaches: 'When ratio reaches',
         whenSeedingTimeReaches: 'When seeding time reaches'
       },
+      pageRss: {
+        tabName: {
+          general: 'General',
+          feeds: 'Feeds',
+          rules: 'Rules'
+        },
+        pageRules: {
+          rules: 'Rules',
+          btnCreateNew: 'Create Rule'
+        },
+        pageFeeds: {
+          feeds: 'Feeds',
+          btnCreateNew: 'Add feed'
+        },
+        pageGeneral: {
+          rssAutoProcessing: 'RSS Reader',
+          rssAutoDownloader: 'RSS Torrent Auto Downloader',
+          input: {
+            enableRssAutoDownload: 'Enable auto downloading of RSS torrents',
+            enableRssProcessing: 'Enable fetching RSS feeds',
+            feedsRefreshInterval: 'Feeds refresh interval',
+            feedsMaxArticles: 'Maximum number of articles per feed'
+          }
+        }
+      },
       pageWebUI: {
         useAlternativeWebUI: 'Use Alternative WebUI',
         filesLocation: 'Files location',
@@ -199,7 +242,7 @@ const locale = {
         port: 'Port',
         authentication: 'Authentication',
         username: 'Username',
-        password: 'password',
+        password: 'Password',
         maxAttempts: 'Max attempts',
         banDuration: 'Ban Duration (seconds)',
         sessionTimeout: 'Session timeout (seconds)',
@@ -242,6 +285,7 @@ const locale = {
       tabTitleContent: 'Content',
       tabTitleTagsCategories: 'Tags & Categories',
       pageInfo: {
+        pieceStates: 'Progress',
         torrentTitle: 'Torrent title',
         hash: 'hash',
         ratio: 'Ratio',
@@ -344,7 +388,9 @@ const locale = {
     loginSuccess: 'Successfully logged in! 🎉',
     loginFailed: 'Login failed 😕',
     settingsSaved: 'Settings saved successfully!',
-    categorySaved: 'Category edited successfully!'
+    categorySaved: 'Category edited successfully!',
+    feedSaved: 'Feed saved successfully!',
+    ruleSaved: 'Rule saved!'
   },
 
   /** RightClick **/
